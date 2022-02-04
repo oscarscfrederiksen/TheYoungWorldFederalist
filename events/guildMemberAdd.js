@@ -23,4 +23,4 @@ const ordinal = (number) => {
     };
     const suffix = suffixes[ordinalRules.select(number)];
     return (number + suffix);
-  }
+}
