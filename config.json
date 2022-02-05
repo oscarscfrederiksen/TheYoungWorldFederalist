@@ -1,5 +1,7 @@
 {
-    "prefix":"!",
-    "token":"OTAwNDY5MzkzNjgxNzExMTc0.YXBxeQ.OoxX2OER9QmwyZFAWjekjgKSUqM",
-    "serverID":"900650877776445470"
+	"prefix": "!",
+	"token": "OTAwNDY5MzkzNjgxNzExMTc0.YXBxeQ.r4hU8KMiR4ojU_94RBDYoZHRUhI",
+	"owner": "547788946373869585",
+	"client_id": "900469393681711174",
+	"test_guild_id": "900650877776445470"
 }
