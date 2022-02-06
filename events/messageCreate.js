@@ -2,6 +2,24 @@
 
 const { Collection } = require("discord.js");
 const { prefix, owner } = require("../config.json");
+const fs = require('fs');
+const { parse } = require('csv-parse');
+const { MessageEmbed } = require('discord.js');
+
+var slurs = []
+var completeInformation = []
+fs.createReadStream(__dirname + '/../data/slurs.csv')
+  .pipe(parse())
+  .on('data', (row) => {
+	if (row[0] != "searchSlur") {
+		slurs.push(row[0])
+		completeInformation.push([row[0], row[1], row[2], row[3]])
+	}
+  })
+  .on('end', () => {
+    console.log('CSV file successfully processed');
+  });
+
 
 // Prefix regex, we will use to match in mention prefix.
 
@@ -16,6 +34,41 @@ module.exports = {
 		// Declares const to be used.
 
 		const { client, guild, channel, content, author } = message;
+		let slur;
+
+		var slurPresent = slurs.some(searchSlur => {
+  			slur = searchSlur;
+  			return content.toLowerCase().replace(/ /g, "").includes(slur)
+		})
+
+		if (slurPresent) {
+			let additionalInformation = completeInformation[slurs.indexOf(slur)]
+
+			const embed = new MessageEmbed()
+				.setColor('#c84639')
+				.setTitle('Message removed. Slur detected.')
+				.setDescription("We detected the word **" + additionalInformation[1][0].toLowerCase() + "•".repeat(additionalInformation[1].length - 2) + additionalInformation[1].slice(-1) + "** in your message. To ensure the safety of everyone in the YWF community, we've referred the message to the moderators to decide what to do next.")
+				.setFooter('Stopping hate speech is our number one priority, but we know it can be annoying to have your message removed for no reason. Let us know on how we can improve this in #Suggestions.')
+		
+
+
+			const moderationEmbed = new MessageEmbed()
+				.setColor('#c84639')
+				.setTitle(`Slur detected in ${message.channel.name}`)
+				.setDescription(`Slur detected: ${additionalInformation[1]}\n Offensive to: ${additionalInformation[2]}\n Offensive because: ${additionalInformation[3]}\n\n Used by: <@${author.id}>\n Whole message: ${content}`)
+				.setTimestamp()
+		
+			message.guild.channels.cache.find(c => c.name === "moderation").send({
+				embeds: [moderationEmbed],
+			})
+
+
+			message.reply({
+				embeds: [embed],
+			}).then(() => {
+				message.delete()
+			});
+		}
 
 		// Checks if the bot is mentioned in the message all alone and triggers onMention trigger.
 		// You can change the behavior as per your liking at ./messages/onMention.js
