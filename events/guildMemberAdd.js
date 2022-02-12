@@ -1,6 +1,6 @@
 const {test_guild_id} = require("../config.json")
 const shortGreetings = ["Hello", "Hey", "Howdy", "Hello there", "Hey there", "Hej", "Bonjour", "Hi", "Greetings", "Welcome", "Hola", "Ciao", "Hallo", "Olá", "Siemano", "Merhaba", "Goededag", "Salve", "Szervusvz", "Terve", "Ahoj"]
-const longGreetings = ["glad you found us", "nice to meet you", "happy you are here", "thanks for joining", "great to have you here", ""]
+const longGreetings = ["glad you found us", "nice to meet you", "happy you are here", "thanks for joining", "great to have you here"]
 
 module.exports = {
     name: 'guildMemberAdd',

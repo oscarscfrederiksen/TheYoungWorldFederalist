@@ -10,8 +10,8 @@ module.exports = {
 		(function(){
 			let date = new Date()
 			const channelID = "939922039484084224"
-			client.channels.fetch(channelID).then(timeChannel => timeChannel.setName(`UTC: ${date.getUTCHours()}:${date.getUTCMinutes()}`))
-			console.log(`UTC: ${date.getUTCHours()}:${date.getUTCMinutes()}`)
+			client.channels.fetch(channelID).then(timeChannel => timeChannel.setName(`UTC: ${( '0' + date.getUTCHours()).slice(-2)}:${('0' + date.getUTCMinutes()).slice(-2)}`))
+			console.log(`UTC: ${('0' + date.getUTCHours()).slice(-2)}:${('0' + date.getUTCMinutes()).slice(-2)}`)
 			setTimeout(arguments.callee, 60000)
 		})();
 	},

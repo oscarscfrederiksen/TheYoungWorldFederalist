@@ -62,7 +62,6 @@ module.exports = {
 				embeds: [moderationEmbed],
 			})
 
-
 			message.reply({
 				embeds: [embed],
 			}).then(() => {

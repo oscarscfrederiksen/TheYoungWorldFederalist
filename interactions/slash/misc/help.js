@@ -7,12 +7,6 @@ module.exports = {
 		.setName("help")
 		.setDescription(
 			"List all commands of bot or info about a specific command."
-		)
-		.addStringOption((option) =>
-			option
-				.setName("command")
-				.setDescription("The specific command to see the info of.")
-				.setRequired(false)
 		),
 
 	async execute(interaction) {

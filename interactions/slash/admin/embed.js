@@ -27,9 +27,10 @@ module.exports = {
 			.setTitle(`${interaction.options.getString("title")}`)
 			.setDescription(`${interaction.options.getString("description")}`);
 
-		await interaction.reply({
+		await interaction.channel.send({
 			embeds: [embed],
 		});
 
+		await interaction.delete();
 	},
 };
