@@ -1,10 +1,7 @@
-// Declares constants (destructured) to be used in this file.
-
-const { Collection } = require("discord.js");
-const { prefix, owner } = require("../config.json");
+const { Collection, MessageEmbed } = require("discord.js");
 const fs = require('fs');
 const { parse } = require('csv-parse');
-const { MessageEmbed } = require('discord.js');
+const { prefix, owner }= require("./../config.json").meta
 
 var slurs = []
 var completeInformation = []

@@ -1,7 +1,16 @@
 {
-	"prefix": "!",
-	"token": "OTAwNDY5MzkzNjgxNzExMTc0.YXBxeQ.r4hU8KMiR4ojU_94RBDYoZHRUhI",
-	"owner": "547788946373869585",
-	"client_id": "900469393681711174",
-	"test_guild_id": "900650877776445470"
+	"meta": {
+		"prefix" : "!",
+		"token" : "Bot-Token",
+		"owner" : "547788946373869585",
+		"client_id" : "900469393681711174",
+		"test_guild_id" : "900650877776445470"
+	},
+	"channels" : {
+		"member_count" : "900650877776445474",
+		"utc_time" : "939922039484084224",
+		"introductions" : "943085750335995904",
+		"welcome" : "939207170954764309",
+		"moderation_logs" : "939670884229210183"
+	}
 }
