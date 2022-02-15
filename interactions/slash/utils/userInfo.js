@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed } = require("discord.js");
-const {test_guild_id} = require("./../../../config.json")
+const { test_guild_id } = require("./../../../config.json").meta
 const colors = ['#c84639', '#eeb747', '#8bb149', '#2f5e9e']
 
 module.exports = {
