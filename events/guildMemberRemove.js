@@ -1,14 +1,9 @@
+const { updateMemberChannel } = require("./../utils/helperFunctions")
+
 module.exports = {
     name: 'guildMemberRemove',
 
-    execute(member, client) {
-        updateMembers(member.guild)
-        console.log("User left...")
+    execute(member) {
+        updateMemberChannel(member.guild)
     },
 };
-
-function updateMembers(guild) {
-  const channelID = "900650877776445474"
-  const channel = guild.channels.cache.get(channelID)
-  channel.setName(`Member Count: ${(guild.memberCount-1).toLocaleString()}`)
-}
