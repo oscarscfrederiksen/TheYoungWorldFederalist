@@ -14,7 +14,6 @@ const eventFiles = fs
 
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
-	console.log(`${event.name} has loaded!`)
 	if (event.once) {
 		client.once(event.name, (...args) => event.execute(...args, client));
 	} else {
