@@ -15,12 +15,12 @@ module.exports = {
 			.setDescription("The users' tag.")
 			.setRequired(true)
 		)
-    .addStringOption((option) =>
-      option
-      .setName("reason")
-      .setDescription("The reason for the kick.")
-      .setRequired(false)
-    ),
+        .addStringOption((option) =>
+            option
+            .setName("reason")
+            .setDescription("The reason for the kick.")
+            .setRequired(false)
+        ),
     
     async execute(interaction) {
         const guild = interaction.client.guilds.cache.get(test_guild_id)

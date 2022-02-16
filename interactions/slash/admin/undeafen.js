@@ -8,7 +8,7 @@ module.exports = {
     .addUserOption(option =>
       option
       .setName("user")
-      .description("The user to be undeafened.")
+      .setDescription("The user to be undeafened.")
       .setRequired(true)
     )
     .addStringOption(option =>
