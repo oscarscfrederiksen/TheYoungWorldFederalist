@@ -51,7 +51,7 @@ module.exports = {
           }
       })
 
-      if (numberOfWarnings > 0) {
+      if (numberOfWarnings > 1) {
           logDescription = `${warnUser.username} has been warned ${numberOfWarnings} times.\n${warningList}`
       } else if (numberOfWarnings == 1) {
           logDescription = `${warnUser.username} has been warned ${numberOfWarnings} time.\n${warningList}`
