@@ -1,6 +1,7 @@
 {
 	"meta": {
 		"prefix" : "!",
+		"database_path" : "MongoDB-Path",
 		"token" : "Bot-Token",
 		"owner" : "547788946373869585",
 		"client_id" : "900469393681711174",
