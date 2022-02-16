@@ -16,6 +16,6 @@ module.exports = {
             ADD_REACTIONS: true
           })
         })
-        interaction.channel.send(`Done | Channel Unlocked!`)
+        interaction.reply(`Done | Channel Unlocked!`)
     }
 }
