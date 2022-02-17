@@ -3,6 +3,7 @@ const mongoConnection = require("./../../../utils/mongoConnection")
 const warnSchema = require("./../../../models/warn")
 const { MessageEmbed } = require("discord.js");
 const { moderation_logs } = require("./../../../config.json").channels
+const { warn_1, warn_2, warn_3, warn_4 } = require("./../../../config.json").roles
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -72,6 +73,47 @@ module.exports = {
           mongoose.connection.close()
         }
       })
+
+      var numberOfWarnings = 0;
+
+      await mongoConnection().then(async (mongoose) => {
+        try {
+            const results = await warnSchema.findOne({
+                guildId,
+                userId,
+            })
+            try {
+              for (const warning of results.warnings) {
+                  numberOfWarnings += 1
+              }
+            } catch {
+              numberOfWarnings = 0
+            }
+
+        } finally {
+            mongoose.connection.close()
+        }
+      })
+
+      var warnRole;
+      switch(numberOfWarnings){
+        case(1):
+          warnRole = interaction.guild.roles.cache.find(role => role.id === warn_1)
+          warnMember.roles.add(warnRole)
+          break
+        case(2):
+          warnRole = interaction.guild.roles.cache.find(role => role.id === warn_2)
+          warnMember.roles.add(warnRole)
+          break
+        case(3):
+          warnRole = interaction.guild.roles.cache.find(role => role.id === warn_3)
+          warnMember.roles.add(warnRole)
+          break
+        case(4):
+          warnRole = interaction.guild.roles.cache.find(role => role.id === warn_4)
+          warnMember.roles.add(warnRole)
+          break
+      }
 
       const logEmbed = new MessageEmbed()
         .setAuthor("YWF Moderation logs", interaction.guild.iconURL())
