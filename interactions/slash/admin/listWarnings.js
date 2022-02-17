@@ -2,8 +2,6 @@ const { SlashCommandBuilder, time } = require("@discordjs/builders");
 const mongoConnection = require("./../../../utils/mongoConnection")
 const warnSchema = require("./../../../models/warn")
 const { MessageEmbed } = require("discord.js");
-const { test_guild_id } = require("./../../../config.json").meta
-const { moderation_logs } = require("./../../../config.json").channels
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -17,7 +15,7 @@ module.exports = {
         ),
     
     async execute(interaction) {
-      const guildId = test_guild_id
+      const guildId = interaction.guild.id
       const warnUser = interaction.options.getUser("user")
       const userId = warnUser.id
 

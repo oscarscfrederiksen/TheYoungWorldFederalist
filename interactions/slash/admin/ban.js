@@ -23,7 +23,7 @@ module.exports = {
         ),
     
     async execute(interaction) {
-        const guild = interaction.client.guilds.cache.get(test_guild_id)
+        const guild = interaction.guild
 
         const banUser = interaction.options.getUser("user")
 		const banMember = guild.members.cache.get(banUser.id) || await guild.members.fetch(banUser.id).catch(err => {console.log(err)})

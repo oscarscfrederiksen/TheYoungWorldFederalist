@@ -1,5 +1,4 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { test_guild_id } = require("./../../../config.json").meta
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -19,7 +18,7 @@ module.exports = {
     ),
     
     async execute(interaction) {
-      const guild = interaction.client.guilds.cache.get(test_guild_id)
+      const guild = interaction.guild
       const deafenedUser = interaction.options.getUser("user")
       const deafenedMember = guild.members.cache.get(deafenedUser.id) || await guild.members.fetch(deafenedUser.id)
       const deafenedReason = interaction.options.getString("reason") !== null ? `The reason provided was: ${interaction.options.getString("reason")}` : "No reason was provided by the moderators."

@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed, Permissions } = require("discord.js");
-const { test_guild_id } = require("./../../../config.json").meta
 const { moderation_logs } = require("./../../../config.json").channels
 
 module.exports = {
@@ -30,7 +29,7 @@ module.exports = {
         ,
     
     async execute(interaction) {
-        const guild = interaction.client.guilds.cache.get(test_guild_id)
+        const guild = interaction.guild
 
         const timeoutUser = interaction.options.getUser("user")
 		const timeoutMember = guild.members.cache.get(timeoutUser.id) || await guild.members.fetch(timeoutUser.id).catch(err => {console.log(err)})

@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed } = require("discord.js");
-const { test_guild_id } = require("./../../../config.json").meta
 const colors = ['#c84639', '#eeb747', '#8bb149', '#2f5e9e']
 
 module.exports = {
@@ -18,7 +17,7 @@ module.exports = {
 
 	async execute(interaction) {
 		const user = interaction.options.getUser("usertag")
-		const guild = interaction.client.guilds.cache.get(test_guild_id)
+		const guild = interaction.guild
 		const member = guild.members.cache.get(user.id)
 		const embed = new MessageEmbed()
 			.setColor(`${colors[Math.floor(Math.random() * colors.length)]}`)

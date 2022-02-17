@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { MessageEmbed, Permissions } = require("discord.js");
-const { test_guild_id } = require("./../../../config.json").meta
+const { MessageEmbed } = require("discord.js");
 const { moderation_logs } = require("./../../../config.json").channels
 
 module.exports = {
@@ -23,10 +22,10 @@ module.exports = {
     ),
     
     async execute(interaction) {
-        const guild = interaction.client.guilds.cache.get(test_guild_id)
+        const guild = interaction.guild
 
         const banUser = interaction.options.getUser("user")
-		    const banMember = guild.members.cache.get(banUser.id) || await guild.members.fetch(banUser.id).catch(err => {console.log(err)})
+		const banMember = guild.members.cache.get(banUser.id) || await guild.members.fetch(banUser.id).catch(err => {console.log(err)})
 
         const banReason = interaction.options.getString("reason") !== null ? `The reason provided was: ${interaction.options.getString("reason")}` : "No reason was provided by the moderators."
 

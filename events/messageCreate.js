@@ -1,7 +1,8 @@
-const { Collection, MessageEmbed } = require("discord.js");
+const { Collection, MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const fs = require('fs');
 const { parse } = require('csv-parse');
 const { prefix, owner }= require("./../config.json").meta
+const { moderation_action } = require("./../config.json").channels
 
 var slurs = []
 var completeInformation = []
@@ -46,16 +47,31 @@ module.exports = {
 				.setTitle('Message removed. Slur detected.')
 				.setDescription("We detected the word **" + additionalInformation[1][0].toLowerCase() + "•".repeat(additionalInformation[1].length - 2) + additionalInformation[1].slice(-1) + "** in your message. To ensure the safety of everyone in the YWF community, we've referred the message to the moderators to decide what to do next.")
 				.setFooter('Stopping hate speech is our number one priority, but we know it can be annoying to have your message removed for no reason. Let us know on how we can improve this in #Suggestions.')
-		
-
 
 			const moderationEmbed = new MessageEmbed()
 				.setColor('#c84639')
+				.setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
 				.setTitle(`Slur detected in ${message.channel.name}`)
 				.setDescription(`Slur detected: ${additionalInformation[1]}\n Offensive to: ${additionalInformation[2]}\n Offensive because: ${additionalInformation[3]}\n\n Used by: <@${author.id}>\n Whole message: ${content}`)
 				.setTimestamp()
+
+			const row = new MessageActionRow().addComponents(
+				new MessageButton()
+					.setCustomId("pass")
+					.setLabel("Pass")
+					.setStyle("SUCCESS"),
+				new MessageButton()
+					.setCustomId("warn")
+					.setLabel("Warn")
+					.setStyle("DANGER"),
+				new MessageButton()
+					.setCustomId("removeSlur")
+					.setLabel("Remove Slur")
+					.setStyle("PRIMARY"),
+			)
 		
-			message.guild.channels.cache.find(c => c.name === "moderation").send({
+			message.guild.channels.cache.find(c => c.id === moderation_action).send({
+				components: [row],
 				embeds: [moderationEmbed],
 			})
 
