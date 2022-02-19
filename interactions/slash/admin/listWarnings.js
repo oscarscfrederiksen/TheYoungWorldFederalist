@@ -67,6 +67,7 @@ module.exports = {
             
             return logEmbed
         }
+        
         interaction.deferReply()
         const result = await fetchWarnings()
         interaction.editReply({embeds : [result]})
